@@ -1,0 +1,48 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* background: #1e1a20; */
+    background: white;
+}
+
+body {
+    scroll-snap-type: y mandatory;
+}
+
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+
+a
+{
+    position: fixed;
+    bottom: 0;
+}
+
+.section
+{
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    padding-left: 10%;
+    padding-right: 10%;
+    
+}
+
+.section:nth-child(odd){
+    background-color: lightblue;
+    opacity: 0.2;
+}
+
+/*# sourceMappingURL=main.css.map*/

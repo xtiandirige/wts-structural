@@ -1,0 +1,563 @@
+import './style.css'
+import * as THREE from 'three'
+import * as dat from 'lil-gui'
+import gsap from 'gsap'
+import Experience from './experience/Experience'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
+import { Graphics } from './components/graphics'
+import structureMesh from './scenes/scene-1/structure'
+import loadMesh from './scenes/scene-1/loads'
+import gridMesh from './scenes/scene-1/grid'
+import dimensionMesh from './scenes/scene-1/dimensions'
+
+// Material
+const parameters = {
+    materialColor: '#ffeded'
+}
+
+/**
+ * Debug
+ */
+const gui = new dat.GUI()
+gui
+    .addColor(parameters, 'materialColor')
+    .onChange(() => {
+        structureMaterial.color.set(parameters.materialColor)
+    })
+
+/**
+ * Base
+ */
+
+// let camera, scene, webGLRenderer, css3DRenderer
+// let structure = new THREE.Group()
+// let loads = new THREE.Group()
+// let supportLoads = new THREE.Group()
+// let grid = new THREE.Group()
+// let dimension = new THREE.Group()
+// let referencePoints = new THREE.Group()
+// let structureLabels = new THREE.Group()
+// let originLabels = new THREE.Group()
+// let gridLabels = new THREE.Group()
+// let loadLabels = new THREE.Group()
+// let dimensionLabels = new THREE.Group()
+// let supportLoadLabels = new THREE.Group()
+// let coordinateLabels = new THREE.Group()
+// const objectDistance = 7;
+
+const experience = new Experience(document.querySelector('canvas.webgl'))
+
+// init()
+
+// function init() {
+//     const experience = new Experience(document.querySelector('canvas.webgl'))
+
+//     scene = new THREE.Scene()
+
+//     // STRUCTURE
+//     ~function () {
+//         // const structureElements = structureMesh()
+
+//         // // STRUCTURE
+//         // structure.add(structureElements[0].supportGeometry(), structureElements[1].supportGeometry(), structureElements[2])
+//         // structure.renderOrder = 11
+//         // structure.position.y = -objectDistance * 1
+//         // structureOpacity(0.0)
+//         // scene.add(structure)
+
+//         structureLabels.add(
+//             makeElement('B', new THREE.Vector3(-2.5, -0.6, 0)),
+//             makeElement('C', new THREE.Vector3(2.5, -0.6, 0)),
+//             makeElement('D', new THREE.Vector3(4.5, -0.6, 0))
+//         )
+//         originLabels.add(
+//             makeElement('A', new THREE.Vector3(-5, -0.6, 0)),
+//         )
+//         structureLabels.position.y = -objectDistance * 1
+//         originLabels.position.y = -objectDistance * 1
+//         structureLabelsOpacity(0.0)
+//         originLabelsOpacity(0.0)
+//         scene.add(structureLabels)
+//         scene.add(originLabels)
+//     }()
+
+//     ~function () {
+//         // LOADS
+//         // const loadElements = loadMesh()
+
+//         // loads.add(loadElements[0].loadGeometry(), loadElements[1].loadGeometry(), loadElements[2].loadGeometry())
+//         // loads.renderOrder = 10
+//         // loads.position.y = -objectDistance * 1
+//         // loadsOpacity(0.0)
+//         // scene.add(loads)
+
+//         // loadLabels.add(loadElements[0].createLabel(), loadElements[1].createLabel(), loadElements[2].createLabel())
+//         loadLabels.position.y = -objectDistance * 1
+//         loadsLabelOpacity(0.0)
+//         scene.add(loadLabels)
+
+//         // supportLoads.add(loadElements[3].loadGeometry(), loadElements[4].loadGeometry(), loadElements[5].loadGeometry())
+//         supportLoads.renderOrder = 10
+//         // supportLoads.children[2].rotateZ(Math.PI / 2)
+//         supportLoads.position.y = -objectDistance * 1
+//         supportLoadsOpacity(0.0)
+//         scene.add(supportLoads)
+
+//         // supportLoadLabels.add(loadElements[3].createLabel(), loadElements[4].createLabel(), loadElements[5].createLabel())
+//         supportLoadLabels.position.y = -objectDistance * 1
+//         supportLoadsLabelOpacity(0.0)
+//         scene.add(supportLoadLabels)
+//     }()
+
+//     ~function () {
+//         // GRID
+//         // const gridElement = gridMesh()
+//         // grid = gridElement.originGrid()
+//         grid.renderOrder = 10
+//         grid.position.y = -objectDistance * 1
+//         gridOpacity(0.0)
+//         scene.add(grid)
+
+//         // gridLabels.add(gridElement.createLabel()[0], gridElement.createLabel()[1])
+//         gridLabels.position.y = -objectDistance * 1
+//         gridLabelsOpacity(0.0)
+//         scene.add(gridLabels)
+//     }()
+
+//     ~function () {
+//         // const dimensionElements = dimensionMesh()
+
+//         // dimension.position.y = -objectDistance * 1
+//         // dimension.add(dimensionElements[0].makeDimension(), dimensionElements[1].makeDimension(), dimensionElements[2].makeDimension())
+//         // dimensionOpacity(0.0)
+//         // scene.add(dimension)
+
+//         // dimensionLabels.add(dimensionElements[0].createLabel(), dimensionElements[1].createLabel(), dimensionElements[2].createLabel())
+//         // dimensionLabels.position.y = -objectDistance * 1
+//         // dimensionLabelsOpacity(0.0)
+//         // scene.add(dimensionLabels)
+//     }()
+
+//     ~function () {
+//         const graphicsDummy = new Graphics()
+//         referencePoints.add(
+//             graphicsDummy.generateReferencePoint(),
+//             graphicsDummy.generateReferencePoint(),
+//             graphicsDummy.generateReferencePoint()
+//         )
+//         referencePoints.position.y = -objectDistance * 1
+//         referencePoints.children[0].position.set(-2.5, 0, 0)
+//         referencePoints.children[1].position.set(2.5, 0, 0)
+//         referencePoints.children[2].position.set(4.5, 0, 0)
+//         referencePointsOpacity(0.0)
+//         scene.add(referencePoints)
+//     }()
+
+//     ~function () {
+//         const graphicsDummy = new Graphics({}, { scale: 0.003 })
+//         coordinateLabels.add(
+//             graphicsDummy.generateLabel("(0,0)"),
+//             graphicsDummy.generateLabel("(2.5,0)"),
+//             graphicsDummy.generateLabel("(7.5,0)"),
+//             graphicsDummy.generateLabel("(9.0,0)")
+//         )
+//         coordinateLabels.children[0].position.set(-4.5 - 0.5, 0.5, 0)
+//         coordinateLabels.children[1].position.set(-2.5 - 0.5, 0.5, 0)
+//         coordinateLabels.children[2].position.set(2.5 - 0.5, 0.5, 0)
+//         coordinateLabels.children[3].position.set(4.5 - 0.5, 0.5, 0)
+//         independentLabelsOpacity(0.0)
+//         scene.add(coordinateLabels)
+//         // Refactor main file, learn to dispose, and adjust parameters
+//         // Create folders (one for each page)
+//         // Upload as CDN
+//         // Link to webflow
+
+//         // Build next THREEJS Scene (Reaction)
+//         // Create graphs class for THREEJS (Loads and Deflection)
+//         // Create section class
+
+//         // Transparancy problem with support load
+//         // Positioning of labels responsive
+//     }()
+
+//     ~function () {
+//         // LIGHTS
+//         const directionalLight = new THREE.DirectionalLight('#ffffff', 1)
+//         directionalLight.position.set(0, 8, 20)
+//         const ambientLight = new THREE.AmbientLight('#d3d3d3', 0.2)
+//         scene.add(directionalLight)
+//         scene.add(ambientLight)
+//     }()
+
+//     camera = new THREE.PerspectiveCamera();
+//     camera.position.set(0, 0, 10)
+//     css3DRenderer = new CSS3DRenderer()
+//     css3DRenderer.domElement.style.position = 'absolute'
+//     css3DRenderer.domElement.style.top = 0
+//     // document.querySelector('#css').appendChild(css3DRenderer.domElement)
+//     webGLRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+//     webGLRenderer.setPixelRatio(window.devicePixelRatio)
+//     webGLRenderer.shadowMap.enabled = true
+//     webGLRenderer.shadowMap.type = THREE.PCFSoftShadowMap
+//     // document.querySelector('#webgl').appendChild(webGLRenderer.domElement)
+//     window.addEventListener('resize', resize)
+//     resize()
+// }
+
+// function resize() {
+//     camera.fov = 45
+//     camera.aspect = window.innerWidth / window.innerHeight
+//     camera.near = 1
+//     camera.far = 2000
+//     camera.updateProjectionMatrix()
+//     css3DRenderer.setSize(window.innerWidth, window.innerHeight)
+//     webGLRenderer.setSize(window.innerWidth, window.innerHeight)
+//     //  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+// }
+
+// function makeElement(latexText, position) {
+//     const label = document.createElement('div')
+//     label.style.position = "fixed"
+//     label.style.top = 0
+//     label.style.boxSizing = 'border-box'
+//     katex.render(latexText, label, { throwOnError: false })
+//     const objectCSS = new CSS3DObject(label)
+//     objectCSS.scale.set(0.005, 0.005, 0.005)
+//     objectCSS.position.set(position.x, position.y, position.z)
+//     return objectCSS
+// }
+
+
+
+// function gsapAnimation(target, tweenOptions) {
+//     gsap.to(
+//         target, {
+//         duration: 0.1,
+//         ease: 'power2.inOut',
+//         ...tweenOptions
+//     }
+//     )
+// }
+
+// function traverseGroup(group, operation) {
+//     group.traverse(function (node) {
+//         operation(node)
+//     });
+// }
+
+// function gridOpacity(opacity) {
+//     traverseGroup(grid, (node) => {
+//         if (node.material) {
+//             gsapAnimation(node.material, { opacity: opacity })
+//         }
+//     })
+// }
+
+// function dimensionOpacity(opacity) {
+//     traverseGroup(dimension, (node) => {
+//         if (node.material) {
+//             gsapAnimation(node.material, { opacity: opacity })
+//         }
+//     })
+// }
+
+// function structureOpacity(opacity) {
+//     traverseGroup(structure, (node) => {
+//         if (node.material) {
+//             gsapAnimation(node.material, { opacity: opacity })
+//         }
+//     })
+// }
+// function loadsOpacity(opacity) {
+//     traverseGroup(loads, (node) => {
+//         if (node.material) {
+//             gsapAnimation(node.material, { opacity: opacity })
+//         }
+//     })
+// }
+
+// function referencePointsOpacity(opacity) {
+//     traverseGroup(referencePoints, (node) => {
+//         if (node.material) {
+//             gsapAnimation(node.material, { opacity: opacity })
+//         }
+//     })
+// }
+// function supportLoadsOpacity(opacity) {
+//     traverseGroup(supportLoads, (node) => {
+//         if (node.material) {
+//             gsapAnimation(node.material, { opacity: opacity })
+//         }
+//     })
+// }
+// function gridLabelsOpacity(opacity) {
+//     traverseGroup(gridLabels, (node) => {
+//         for (let child of node.children) {
+//             gsapAnimation(child.element.style, { opacity: opacity })
+//         }
+//     })
+// }
+
+// function structureLabelsOpacity(opacity) {
+//     traverseGroup(structureLabels, (node) => {
+//         for (let child of node.children) {
+//             gsapAnimation(child.element.style, { opacity: opacity })
+//         }
+//     })
+// }
+
+// function originLabelsOpacity(opacity) {
+//     traverseGroup(originLabels, (node) => {
+//         for (let child of node.children) {
+//             gsapAnimation(child.element.style, { opacity: opacity })
+//         }
+//     })
+// }
+
+// function dimensionLabelsOpacity(opacity) {
+//     traverseGroup(dimensionLabels, (node) => {
+//         for (let child of node.children) {
+//             gsapAnimation(child.element.style, { opacity: opacity })
+//         }
+//     })
+// }
+
+// function loadsLabelOpacity(opacity) {
+//     traverseGroup(loadLabels, (node) => {
+//         for (let child of node.children) {
+//             gsapAnimation(child.element.style, { opacity: opacity })
+//         }
+//     })
+// }
+
+
+// function supportLoadsLabelOpacity(opacity) {
+//     traverseGroup(supportLoadLabels, (node) => {
+//         for (let child of node.children) {
+//             gsapAnimation(child.element.style, { opacity: opacity })
+//         }
+//     })
+// }
+// function independentLabelsOpacity(opacity) {
+//     traverseGroup(coordinateLabels, (node) => {
+//         for (let child of node.children) {
+//             gsapAnimation(child.element.style, { opacity: opacity })
+//         }
+//     })
+// }
+
+// function gridXScale(scale, position) {
+//     // gsapAnimation(grid.children[1].scale, { x: scale, ease: 'power2.easeOut', duration: 0.5 })
+//     // gsapAnimation(gridLabels.children[0].position, { x: position, ease: 'power2.easeOut', duration: 0.5 })
+// }
+// function originCoordinateOpacity(opacity) {
+//     gsapAnimation(coordinateLabels.children[0].element.style, { opacity: opacity })
+// }
+
+// /**
+//  * Sizes
+//  */
+// const sizes = {
+//     width: window.innerWidth,
+//     height: window.innerHeight
+// }
+
+// window.addEventListener('resize', () => {
+//     // Update sizes
+//     sizes.width = window.innerWidth
+//     sizes.height = window.innerHeight
+
+//     // Update camera
+//     camera.aspect = sizes.width / sizes.height
+//     camera.updateProjectionMatrix()
+
+//     // Update renderer
+//     webGLRenderer.setSize(sizes.width, sizes.height)
+//     webGLRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+// })
+
+// const cameraGroup = new THREE.Group()
+// scene.add(cameraGroup)
+
+
+// /**
+//  * Camera
+//  */
+// // Base camera
+// // const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100)
+// // const camera = new THREE.OrthographicCamera(- 3 * sizes.width / sizes.height, 3 * sizes.width / sizes.height, 3, -3, 0.1, 100)
+// camera.position.z = 10
+// cameraGroup.add(camera)
+
+// /**
+//  * Renderer
+//  */
+// // const renderer = new THREE.WebGLRenderer({
+// //     canvas: canvas,
+// //     alpha: true,
+// //     antialias: true,
+// // })
+// // renderer.setSize(sizes.width, sizes.height)
+// // renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+// // renderer.shadowMap.enabled = true;
+
+// /**
+//  * Animate
+//  */
+// const clock = new THREE.Clock()
+// let previousTime = 0
+
+// let scrollY = window.scrollY
+// let currentSection = 0;
+// window.addEventListener('scroll', () => {
+//     scrollY = window.scrollY
+//     const newSection = Math.round(scrollY / sizes.height)
+
+
+//     if ((scrollY / sizes.height) > 1) {
+//         structure.position.y = -scrollY / sizes.height * objectDistance
+//         referencePoints.position.y = -scrollY / sizes.height * objectDistance
+//         loads.position.y = -scrollY / sizes.height * objectDistance
+//         supportLoads.position.y = -scrollY / sizes.height * objectDistance
+//         supportLoadLabels.position.y = -scrollY / sizes.height * objectDistance
+//         dimension.position.y = -scrollY / sizes.height * objectDistance
+//         grid.position.y = -scrollY / sizes.height * objectDistance
+//         dimensionLabels.position.y = -scrollY / sizes.height * objectDistance
+//         loadLabels.position.y = -scrollY / sizes.height * objectDistance
+//         gridLabels.position.y = -scrollY / sizes.height * objectDistance
+//         originLabels.position.y = -scrollY / sizes.height * objectDistance
+//         structureLabels.position.y = -scrollY / sizes.height * objectDistance
+//         coordinateLabels.position.y = -scrollY / sizes.height * objectDistance
+//     }
+
+//     if (newSection === 1) {
+//         structureOpacity(0.5)
+//         loadsOpacity(1.0)
+//         loadsLabelOpacity(1.0)
+//         dimensionOpacity(1.0)
+//         dimensionLabelsOpacity(1.0)
+//     } else if (newSection === 0) {
+//         structureOpacity(0.0)
+//         loadsOpacity(0.0)
+//         loadsLabelOpacity(0.0)
+//         dimensionOpacity(0.0)
+//         dimensionLabelsOpacity(0.0)
+//     }
+
+//     if (newSection === 2) {
+//         structureOpacity(0.5)
+//         gridOpacity(1.0)
+//         gridLabelsOpacity(1.0)
+//         originLabelsOpacity(1.0)
+//         loadsOpacity(0.15)
+//         loadsLabelOpacity(0.15)
+//         dimensionOpacity(0.0)
+//         dimensionLabelsOpacity(0.0)
+//         originCoordinateOpacity(1.0)
+//     } else if (newSection === 1) {
+//         gridOpacity(0.0)
+//         gridLabelsOpacity(0.0)
+//         originLabelsOpacity(0.0)
+//     }
+
+//     if (newSection === 3) {
+//         gridXScale(5, 5)
+//         independentLabelsOpacity(1.0)
+//         structureOpacity(0.2)
+//         structureLabelsOpacity(1.0)
+//         dimensionOpacity(1.0)
+//         dimensionLabelsOpacity(1.0)
+//         referencePointsOpacity(1.0)
+//         loadsOpacity(0.4)
+//         loadsLabelOpacity(0.4)
+//     } else if (newSection === 2) {
+//         gridXScale(1, -2.5)
+//         // independentLabelsOpacity(0.0)
+//         structureLabelsOpacity(0.0)
+//         referencePointsOpacity(0.0)
+//     }
+
+//     if (newSection === 4) {
+//         structureOpacity(0.5)
+//         supportLoadsOpacity(1.0)
+//         supportLoadsLabelOpacity(1.0)
+//         dimensionOpacity(0.0)
+//         dimensionLabelsOpacity(0.0)
+//     } else if (newSection === 3) {
+//         supportLoadsOpacity(0.0)
+//         supportLoadsLabelOpacity(0.0)
+//     }
+
+//     if (newSection === 5) {
+
+//     } else if (newSection === 4) {
+
+//     }
+
+//     if (newSection === 7) {
+//         structureOpacity(0.0)
+//         structureLabelsOpacity(0.0)
+//         dimensionOpacity(0.0)
+//         dimensionLabelsOpacity(0.0)
+//         referencePointsOpacity(0.0)
+//         loadsOpacity(0.0)
+//         loadsLabelOpacity(0.0)
+//     }
+
+//     if (newSection != currentSection) {
+//         currentSection = newSection
+
+//         // gsap.to(
+//         //     sectionMeshes[currentSection].rotation,
+//         //     {
+//         //         duration: 1.5,
+//         //         ease: 'power2.inOut',
+//         //         x: '+=6',
+//         //         y: '+=3',
+//         //         z: '+=1.5',
+//         //     }
+//         // )
+//     }
+// })
+
+// // const cursor = {}
+// // cursor.x = 0
+// // cursor.y = 0
+
+// // window.addEventListener('mousemove', (event) => {
+// //     cursor.x = event.clientX / sizes.width - 0.5
+// //     cursor.y = event.clientY / sizes.height - 0.5
+// // })
+
+// // const controls = new OrbitControls(camera, webGLRenderer.domElement);
+// // controls.update();
+
+// const tick = () => {
+//     // const elapsedTime = clock.getElapsedTime()
+//     // const deltaTime = elapsedTime - previousTime;
+//     // previousTime = elapsedTime
+
+//     // for (const mesh of sectionMeshes) {
+//     //     mesh.rotation.x += deltaTime * 0.1;
+//     //     mesh.rotation.y += deltaTime * 0.12;
+//     // }
+
+//     camera.position.y = -scrollY / sizes.height * objectDistance
+
+//     // const parallaxX = -cursor.x * 0.5;
+//     // const parallaxY = cursor.y * 0.5;
+//     // cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime
+//     // cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime
+
+//     // controls.update();
+
+//     // Render
+//     webGLRenderer.render(scene, camera)
+//     css3DRenderer.render(scene, camera)
+
+//     // Call tick again on the next frame
+//     window.requestAnimationFrame(tick)
+// }
+
+// tick()

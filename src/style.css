@@ -1,0 +1,104 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Noto Sans Math';
+    src: url(../static/fonts/NotoSansMath-Regular.ttf);
+}
+
+html {
+    font-family: 'Noto Sans Math', serif;
+    background: white;
+}
+
+body {
+    margin: 0;
+    scroll-snap-type: y mandatory;
+}
+
+#css{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+#webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+canvas.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.section
+{
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    padding-left: 10%;
+    padding-right: 10%;
+    
+}
+
+/* .section:nth-child(odd){
+    background-color: lightblue;
+    opacity: 0.2;
+} */
+
+.katex { font-size: 100px; }
+
+h1{
+    font-size: xx-large;
+}
+
+p {
+    font-size: x-large;
+}
+
+.testSection{
+    position: absolute;
+    top: 6em;
+}
+
+.testSection2{
+    position: absolute;
+    right: 8em;
+    width: 30em;
+    height: 30em;
+    color: white;
+    padding: 30px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    box-shadow: -1px 1px 10px grey;
+}
+
+.testSection3{
+    position: absolute;
+    bottom: 8em;
+}
+
+.testSection4{
+    position: absolute;
+    left: 8em;
+    width: 20em;
+    height: 30em;
+    color: white;
+    padding: 30px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    box-shadow: -1px 1px 10px grey;
+}

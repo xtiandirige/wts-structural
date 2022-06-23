@@ -1,0 +1,54 @@
+    // create2DArc() {
+    //     const arcGroup = new THREE.Group()
+    //     arcGroup.add(this.generate2DArc(this.magnitude, 2))
+    //     arcGroup.add(this.generate2DArrowhead(this.magnitude))
+    //     // Adjust arrowhead so that it will orient at point of tangency
+    //     this.position2DArrowhead(arcGroup.children[1], this.magnitude, -Math.PI / 2)
+    //     return arcGroup
+    // }
+
+    // const arc1 = this.create2DArc()
+    // const arc2 = this.create2DArc()
+    // arc2.rotateY(Math.PI).rotateX(Math.PI)
+    // this.moment.add(arc1, arc2)
+
+    // this.load.add(this.generate2DLine(this.magnitude))
+            // this.load.add(this.generate2DArrowhead(this.magnitude))
+
+            generate2DLine(magnitude) {
+        const meshLine = new MeshLine()
+        meshLine.setPoints([
+            0, 0, 0,
+            0, magnitude + this.arrowheadHeight, 0
+        ])
+        return new THREE.Mesh(meshLine, new MeshLineMaterial({ color: 0x0000ff, lineWidth: this.lineRadius * 2 }))
+    }
+
+    generate2DArc(magnitude, denominator) {
+        const meshLine = new MeshLine()
+        const points = [];
+        for (let j = 0; j < Math.PI / denominator; j += (2 * Math.PI) / 100) {
+            points.push(magnitude * Math.cos(j), magnitude * Math.sin(j), 0);
+        }
+        meshLine.setPoints(points)
+        return new THREE.Mesh(meshLine, new MeshLineMaterial({ color: 0x0000ff, lineWidth: this.lineRadius * 2 }))
+    }
+
+    generate2DArrowhead(magnitude) {
+        const triangle = new THREE.Shape()
+        triangle.moveTo(0, magnitude)
+        triangle.lineTo(-this.arrowheadRadius, this.arrowheadHeight + magnitude)
+        triangle.lineTo(this.arrowheadRadius, this.arrowheadHeight + magnitude)
+        triangle.lineTo(0, magnitude)
+        const shapeGeometry = new THREE.ShapeGeometry(triangle)
+        const arrowhead = new THREE.Mesh(shapeGeometry, this.material)
+        arrowhead.material.side = THREE.DoubleSide;
+        return arrowhead
+    }
+
+    position2DArrowhead(arrowhead, magnitude, rotation) {
+        arrowhead.position.set(-magnitude - this.arrowheadHeight * magnitude, magnitude, 0)
+        arrowhead.rotateZ(rotation)
+    }
+
+    import { MeshLine, MeshLineMaterial } from 'three.meshline';

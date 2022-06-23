@@ -1,0 +1,283 @@
+// import './style.css'
+// import * as THREE from 'three'
+
+// const sizes = {
+//     width: window.innerWidth,
+//     height: window.innerHeight
+// }
+
+// const canvas = document.querySelector('canvas.webgl')
+// const scene = new THREE.Scene()
+// const objectsDistance = 4
+// const material = new THREE.MeshToonMaterial({ color: '#ffeded' })
+
+// const cameraGroup = new THREE.Group()
+// scene.add(cameraGroup)
+
+// const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100)
+// camera.position.z = 6
+// cameraGroup.add(camera)
+
+// const renderer = new THREE.WebGLRenderer({
+//     canvas: canvas,
+//     alpha: true
+// })
+// renderer.setSize(sizes.width, sizes.height)
+// renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+// const beam = new THREE.BoxGeometry(9, 0.5, 0.3)
+// const mesh1 = new THREE.Mesh(beam, material)
+// const roller = new THREE.SphereGeometry(0.25)
+// const mesh2 = new THREE.Mesh(roller, material)
+// mesh2.position.x - 2.5
+// mesh2.position.y = -0.25 - 0.25
+// const hinge = new THREE.CylinderGeometry(0.3 / Math.sqrt(2), 0.6 / Math.sqrt(2), 0.5, 4, 1)
+// hinge.rotateY(Math.PI / 4)
+// const mesh3 = new THREE.Mesh(hinge, material)
+// mesh3.position.x = 2.5
+// mesh3.position.y = -0.5
+// const beamGroup = new THREE.Group()
+// beamGroup.add(mesh1)
+// beamGroup.add(mesh2)
+// beamGroup.add(mesh3)
+// beamGroup.position.y = -objectDistance * 1
+// scene.add(mesh1)
+
+// const directionalLight = new THREE.DirectionalLight('#ffffff', 1)
+// directionalLight.position.set(1, 1, 0)
+// scene.add(directionalLight)
+
+// window.addEventListener('resize', () => {
+//     sizes.width = window.innerWidth
+//     sizes.height = window.innerHeight
+
+//     camera.aspect = sizes.width / sizes.height
+//     camera.updateProjectionMatrix()
+
+//     renderer.setSize(sizes.width, sizes.height)
+//     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+// })
+
+// let scrollY = window.scrollY
+// let currentSection = 0
+
+// window.addEventListener('scroll', () => {
+//     scrollY = window.scrollY
+//     const newSection = Math.round(scrollY / sizes.height)
+
+//     if (newSection != currentSection) {
+//         currentSection = newSection
+
+//         //gsap.to(
+//         //sectionMeshes[currentSection].rotation,
+//         //{
+//         //duration: 1.5,
+//         //ease: 'power2.inOut',
+//         //x: '+=6',
+//         //y: '+=3'
+//         //}
+//         //)
+//     }
+// })
+
+// const cursor = {}
+// cursor.x = 0
+// cursor.y = 0
+
+// window.addEventListener('mousemove', (event) => {
+//     cursor.x = event.clientX / sizes.width - 0.5
+//     cursor.y = event.clientY / sizes.height - 0.5
+// })
+
+
+
+// const clock = new THREE.Clock()
+// let previousTime = 0
+
+// const tick = () => {
+//     const elapsedTime = clock.getElapsedTime()
+//     const deltaTime = elapsedTime - previousTime
+//     previousTime = elapsedTime
+
+//     //for(const mesh of sectionMeshes)
+//     //{
+//     //mesh.rotation.x += deltaTime * 0.1
+//     //mesh.rotation.y += deltaTime * 0.12
+//     //}
+
+//     camera.position.y = - scrollY / sizes.height * objectsDistance
+
+//     const parallaxX = cursor.x * 0.5
+//     const parallaxY = - cursor.y * 0.5
+
+//     cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime
+//     cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime
+
+//     renderer.render(scene, camera)
+
+//     window.requestAnimationFrame(tick)
+// }
+
+// tick()
+
+
+
+
+// const magnitude = -0.8
+// const arrowheadHeight = 0.3
+// const lineArrowRadius = 0.025
+// const arrowheadRadius = 0.09
+// const lineMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+
+// const generateLoad = (positionX) => {
+//     // Switch x, y, and z
+//     // Adjust load generation to accomodate linear load
+//     const lineCurve = new THREE.LineCurve3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, magnitude, 0));
+//     const lineArrow = new THREE.Mesh(new THREE.TubeGeometry(lineCurve, 20, lineArrowRadius, 8, false), lineMaterial);
+//     const arrowhead = new THREE.Mesh(new THREE.ConeGeometry(arrowheadRadius, arrowheadHeight, 32), lineMaterial);
+//     arrowhead.position.set(lineCurve.v2.x, lineCurve.v2.y, lineCurve.v2.z)
+//     if (magnitude < 0) {
+//         arrowhead.rotateX(Math.PI)
+//     }
+//     const loadArrow = new THREE.Group().add(lineArrow, arrowhead)
+//     loadArrow.position.x = positionX
+//     return loadArrow
+// }
+
+// const createTie = () => {
+//     if (loadGroup.children.length != 1) {
+//         const vectorA = loadGroup.children[0].children[0].geometry.parameters.path.v1
+//         const vectorB = loadGroup.children[loadGroup.children.length - 1].children[0].geometry.parameters.path.v1.add(loadGroup.children[loadGroup.children.length - 1].position)
+//         const tiePath = new THREE.LineCurve3(vectorA, vectorB);
+//         const tie = new THREE.Mesh(new THREE.TubeGeometry(tiePath, 20, lineArrowRadius, 8, false), lineMaterial);
+//         tie.position.x = 0
+//         tie.position.y = -lineArrowRadius
+//         return tie
+//     }
+// }
+
+// // GENERATE LOAD
+// let lengthRange = 4;
+// let spacingInterval = 2;
+// const loadGroup = new THREE.Group()
+// const space = lengthRange / spacingInterval;
+// for (let positionX = 0; positionX <= lengthRange; positionX += space) {
+//     loadGroup.add(generateLoad(positionX))
+// }
+// loadGroup.add(createTie())
+// loadGroup.position.x = -2
+// scene.add(loadGroup)
+// loadGroup.position.y = -objectDistance + 0.25 - magnitude + arrowheadHeight / 2
+
+// // Generate for moment
+// const generateMoment = (magnitude, positionX) => {
+//     // Switch x, y, and z
+//     const quarterCircleCurve = new THREE.CubicBezierCurve3(
+//         new THREE.Vector3(0, magnitude, 0),
+//         new THREE.Vector3(0.5519150244935105707435627 * magnitude, magnitude, 0),
+//         new THREE.Vector3(magnitude, 0.5519150244935105707435627 * magnitude, 0),
+//         new THREE.Vector3(magnitude, 0, 0),
+//     );
+//     const lineArrow = new THREE.Mesh(new THREE.TubeGeometry(quarterCircleCurve, 20, lineArrowRadius, 8, false), lineMaterial);
+//     const arrowhead = new THREE.Mesh(new THREE.ConeGeometry(arrowheadRadius, arrowheadHeight, 32), lineMaterial);
+//     arrowhead.position.x = magnitude
+//     arrowhead.position.y = -0.1
+//     arrowhead.rotateX(Math.PI)
+//     const momentArrow = new THREE.Group().add(lineArrow, arrowhead)
+//     momentArrow.position.x = positionX
+//     return momentArrow
+// }
+
+// const createCenter = () => {
+//     return new THREE.Mesh(new THREE.SphereGeometry(0.05), lineMaterial);
+// }
+
+// const momentGroup = new THREE.Group()
+// momentGroup.add(generateMoment(0.5, 0))
+// momentGroup.add(generateMoment(0.5, 0).rotateY(Math.PI).rotateX(Math.PI))
+// momentGroup.add(createCenter())
+// momentGroup.position.x = -4.5
+// // direction of moment (clockwise or counterclockwise)
+// momentGroup.rotateX(Math.PI);
+// momentGroup.position.y = -objectDistance
+// scene.add(momentGroup)
+
+// Grid
+// const origin = [];
+// origin.push(-4.5, 1, 0.15);
+// origin.push(-4.5, 0, 0.15);
+// origin.push(-3.5, 0, 0.15);
+
+// const originLines = new MeshLine();
+// originLines.setPoints(origin, p => 0.02);
+// const originalLineMaterial = new MeshLineMaterial(
+//     {
+//         color: new THREE.Color('black'),
+//         transparent: true,
+//         opacity: 0,
+//     }
+// );
+// const originGrid = new THREE.Mesh(originLines, originalLineMaterial);
+// originGrid.position.y = -objectDistance * 2;
+// scene.add(originGrid);
+
+// let rollerRadius = 0.25
+// const rollerGeometry = new THREE.SphereGeometry(rollerRadius);
+// rollerGeometry.rotateX(Math.PI / 2);
+// const roller = new THREE.Mesh(rollerGeometry, supportMaterial)
+// roller.position.y = 
+// roller.position.x = -2.5
+
+// const hingeGeometry = new THREE.CylinderGeometry(0.3 / Math.sqrt(2), 0.6 / Math.sqrt(2), 0.5, 4, 1); // size of top can be changed
+// hingeGeometry.rotateY(Math.PI / 4);
+// const hinge = new THREE.Mesh(hingeGeometry, supportMaterial);
+// hinge.position.y = -objectDistance * 0 - 0.5
+// hinge.position.x = 2.5
+
+// function roundRect(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r); ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h); ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r); ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath(); ctx.fill(); ctx.stroke(); }
+
+// function makeTextSprite(message, parameters) {
+//     if (parameters === undefined) parameters = {};
+
+//     let fontface = parameters.hasOwnProperty("fontface") ? parameters["fontface"] : "Arial";
+//     let fontsize = parameters.hasOwnProperty("fontsize") ? parameters["fontsize"] : 18;
+//     let borderThickness = parameters.hasOwnProperty("borderThickness") ? parameters["borderThickness"] : 4;
+//     let borderColor = parameters.hasOwnProperty("borderColor") ? parameters["borderColor"] : { r: 0, g: 0, b: 0, a: 1.0 };
+//     let backgroundColor = parameters.hasOwnProperty("backgroundColor") ? parameters["backgroundColor"] : { r: 255, g: 60, b: 255, a: 1.0 };
+//     let textColor = parameters.hasOwnProperty("textColor") ? parameters["textColor"] : { r: 0, g: 0, b: 0, a: 1.0 };
+
+//     let canvas = document.createElement('canvas');
+//     canvas.width = 1024
+//     canvas.height = 1024
+
+//     let context = canvas.getContext('2d');
+//     context.font = fontsize + "px " + fontface;
+//     let metrics = context.measureText(message);
+//     let textWidth = metrics.width;
+
+
+//     context.fillStyle = "rgba(" + backgroundColor.r + "," + backgroundColor.g + "," + backgroundColor.b + "," + backgroundColor.a + ")";
+//     context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
+
+//     context.lineWidth = borderThickness;
+//     roundRect(context, borderThickness / 2, borderThickness / 2, (textWidth + borderThickness) * 1.1, fontsize * 1.4 + borderThickness, 8);
+
+//     context.fillStyle = "rgba(" + textColor.r + ", " + textColor.g + ", " + textColor.b + ", 1.0)";
+//     context.fillText(message, borderThickness, fontsize + borderThickness);
+
+//     var texture = new THREE.CanvasTexture(canvas)
+//     texture.minFilter = THREE.LinearFilter;
+
+//     var spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+//     var sprite = new THREE.Sprite(spriteMaterial);
+//     sprite.scale.set(0.002 * canvas.width, 0.0022 * canvas.height)
+//     // sprite.scale.set(0.5 * fontsize, 0.25 * fontsize, 0.75 * fontsize);
+//     // sprite.scale.set(canvas.width * 0.2, 2, 1.0);
+//     return sprite;
+// }
+
+// // 𝑥
+
+// const sprite = makeTextSprite('150kN/m', { fontface: 'Noto Sans Math', fontsize: 100 })
+// // sprite.position.set(-2, -1, 0)
+// scene.add(sprite)
