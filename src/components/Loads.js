@@ -88,7 +88,6 @@ class LinearLoad extends PointLoad {
         super(parameters)
         this.magnitudeA = parameters.hasOwnProperty("magnitudeA") ? parameters["magnitudeA"] : 1
         this.magnitudeB = parameters.hasOwnProperty("magnitudeB") ? parameters["magnitudeB"] : 1
-        // this.position = parameters.hasOwnProperty("position") ? parameters["position"] : new THREE.Vector3(0, 0, 0)
         this.positionA = parameters.hasOwnProperty("positionA") ? parameters["positionA"] : new THREE.Vector3(0, 0, 0)
         this.positionB = parameters.hasOwnProperty("positionB") ? parameters["positionB"] : new THREE.Vector3(1, 0, 0)
         this.numberOfIntervals = parameters.hasOwnProperty("numberOfIntervals") ? parameters["numberOfIntervals"] : 4
