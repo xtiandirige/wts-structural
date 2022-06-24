@@ -1083,10 +1083,10 @@ class World {
         this.parameters()
         this.axisHelper()
         this.getStructure()
-        this.getLoads()
-        this.getGrid()
-        this.getDimensions()
-        this.getReferencePoint()
+        // this.getLoads()
+        // this.getGrid()
+        // this.getDimensions()
+        // this.getReferencePoint()
         // this.getLabels()
         this.getGlobalGroup()
         // this.resources = this.experience.resources
@@ -1094,15 +1094,15 @@ class World {
         //     this.object = new Object()
         //     this.environment = new Environment()
         // })
-        window.addEventListener('scroll', () => {
-            this.scrollY = window.scrollY
-            if ((this.scrollY / this.experience.sizes.height) > 1) {
-                this.globalGroup.position.y = -scrollY / this.experience.sizes.height * this.objectDistance
-                this.globalLabels.position.y = -scrollY / this.experience.sizes.height * this.objectDistance
-            }
-            this.switchScenes()
-            this.experience.camera.positionCamera(new THREE.Vector3(0, -this.scrollY / this.experience.sizes.height * this.objectDistance, 0))
-        })
+        // window.addEventListener('scroll', () => {
+        //     this.scrollY = window.scrollY
+        //     if ((this.scrollY / this.experience.sizes.height) > 1) {
+        //         this.globalGroup.position.y = -scrollY / this.experience.sizes.height * this.objectDistance
+        //         this.globalLabels.position.y = -scrollY / this.experience.sizes.height * this.objectDistance
+        //     }
+        //     this.switchScenes()
+        //     this.experience.camera.positionCamera(new THREE.Vector3(0, -this.scrollY / this.experience.sizes.height * this.objectDistance, 0))
+        // })
     }
 
     // TODO: Refactor classes (make it cleaner)
@@ -1195,11 +1195,11 @@ class World {
         this.globalGroup = new THREE.Group()
         this.globalGroup.add(
             this.structure,
-            this.loads,
-            this.supportLoads,
-            this.grid,
-            this.dimension,
-            this.referencePoints
+            // this.loads,
+            // this.supportLoads,
+            // this.grid,
+            // this.dimension,
+            // this.referencePoints
         )
         this.globalGroup.position.y = -this.objectDistance * 1
         this.scene.add(this.globalGroup)
