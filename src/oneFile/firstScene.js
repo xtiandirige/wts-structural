@@ -290,14 +290,70 @@ class World {
     constructor() {
         this.experience = new Experience()
         this.scene = this.experience.scene
-        this.sampleMesh()
+        this.parameters()
+        this.getStructure()
+        this.getGlobalGroup()
     }
 
-    sampleMesh() {
-        this.scene.add(new THREE.Mesh(new THREE.BoxGeometry(9, 0.5, 0.3), new THREE.MeshBasicMaterial({
-            color: '#D3D3D3',
-            transparent: true,
-        })))
+    parameters() {
+        this.objectDistance = 7
+        this.loadPosition = [
+            new THREE.Vector3(-4.5, 0, 0),
+            new THREE.Vector3(-2.5, 0.15, 0),
+            new THREE.Vector3(4.5, 1.15, 0),
+            new THREE.Vector3(-2.5, -1.15, 0),
+            new THREE.Vector3(2.5, -1.15, 0),
+            new THREE.Vector3(3.65, 0, 0)
+        ]
+        this.dimensionParameters = [
+            {
+                pointA: new THREE.Vector3(0, 0, 0),
+                pointB: new THREE.Vector3(2, 0, 0),
+                position: new THREE.Vector3(-4.5, -1.8, 0)
+            },
+            {
+                pointA: new THREE.Vector3(2, 0, 0),
+                pointB: new THREE.Vector3(7, 0, 0),
+                position: new THREE.Vector3(-2.5, -1.8, 0)
+            },
+            {
+                pointA: new THREE.Vector3(7, 0, 0),
+                pointB: new THREE.Vector3(9, 0, 0),
+                position: new THREE.Vector3(2.5, -1.8, 0),
+            }
+        ]
+    }
+
+    getStructure() {
+        this.structure = new Structure().structure
+        this.structure.renderOrder = 1
+    }
+
+    getGlobalGroup() {
+        this.globalGroup = new THREE.Group()
+        this.globalGroup.add(
+            this.structure,
+            this.loads,
+            this.supportLoads,
+            this.grid,
+            this.dimension,
+            this.referencePoints
+        )
+        this.globalGroup.position.y = -this.objectDistance * 1
+        this.scene.add(this.globalGroup)
+        this.globalLabels = new THREE.Group()
+        this.globalLabels.add(
+            this.originLabel,
+            this.referenceLabels,
+            this.originStructureLabel,
+            this.referenceStructureLabel,
+            this.loadLabel,
+            this.supportLabel,
+            this.gridLabel,
+            this.dimensionLabel
+        )
+        this.globalLabels.position.y = -this.objectDistance * 1
+        this.scene.add(this.globalLabels)
     }
 
     update() {
