@@ -416,27 +416,27 @@ class World {
         this.globalGroup = new THREE.Group()
         this.globalGroup.add(
             this.structure,
-            this.loads,
-            this.supportLoads,
-            this.grid,
-            this.dimension,
-            this.referencePoints
+            // this.loads,
+            // this.supportLoads,
+            // this.grid,
+            // this.dimension,
+            // this.referencePoints
         )
         this.globalGroup.position.y = -this.objectDistance * 1
         this.scene.add(this.globalGroup)
-        this.globalLabels = new THREE.Group()
-        this.globalLabels.add(
-            this.originLabel,
-            this.referenceLabels,
-            this.originStructureLabel,
-            this.referenceStructureLabel,
-            this.loadLabel,
-            this.supportLabel,
-            this.gridLabel,
-            this.dimensionLabel
-        )
-        this.globalLabels.position.y = -this.objectDistance * 1
-        this.scene.add(this.globalLabels)
+        // this.globalLabels = new THREE.Group()
+        // this.globalLabels.add(
+        //     this.originLabel,
+        //     this.referenceLabels,
+        //     this.originStructureLabel,
+        //     this.referenceStructureLabel,
+        //     this.loadLabel,
+        //     this.supportLabel,
+        //     this.gridLabel,
+        //     this.dimensionLabel
+        // )
+        // this.globalLabels.position.y = -this.objectDistance * 1
+        // this.scene.add(this.globalLabels)
     }
 
     update() {
