@@ -422,7 +422,7 @@ class World {
             // this.dimension,
             // this.referencePoints
         )
-        this.globalGroup.position.y = -this.objectDistance * 1
+        // this.globalGroup.position.y = -this.objectDistance * 1
         this.scene.add(this.globalGroup)
         // this.globalLabels = new THREE.Group()
         // this.globalLabels.add(
