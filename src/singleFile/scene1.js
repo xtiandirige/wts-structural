@@ -1087,7 +1087,7 @@ class World {
         this.getGrid()
         this.getDimensions()
         this.getReferencePoint()
-        this.getLabels()
+        // this.getLabels()
         this.getGlobalGroup()
         // this.resources = this.experience.resources
         // this.resources.on('ready', () => {
@@ -1180,16 +1180,16 @@ class World {
         this.referencePoints = new ReferencePoints().referenceGroup
     }
 
-    getLabels() {
-        this.originLabel = new ReferenceLabels().originLabel
-        this.referenceLabels = new ReferenceLabels().referenceLabel
-        this.originStructureLabel = new StructureLabels().originStructureLabel
-        this.referenceStructureLabel = new StructureLabels().referenceStructureLabel
-        this.loadLabel = new LoadLabels(this.loadPosition).loadLabels
-        this.supportLabel = new LoadLabels(this.loadPosition).supportLabels
-        this.gridLabel = new GridLabels().gridLabels
-        this.dimensionLabel = new DimensionLabel(this.dimensionParameters).dimensionLabel
-    }
+    // getLabels() {
+    //     this.originLabel = new ReferenceLabels().originLabel
+    //     this.referenceLabels = new ReferenceLabels().referenceLabel
+    //     this.originStructureLabel = new StructureLabels().originStructureLabel
+    //     this.referenceStructureLabel = new StructureLabels().referenceStructureLabel
+    //     this.loadLabel = new LoadLabels(this.loadPosition).loadLabels
+    //     this.supportLabel = new LoadLabels(this.loadPosition).supportLabels
+    //     this.gridLabel = new GridLabels().gridLabels
+    //     this.dimensionLabel = new DimensionLabel(this.dimensionParameters).dimensionLabel
+    // }
 
     getGlobalGroup() {
         this.globalGroup = new THREE.Group()
@@ -1203,19 +1203,19 @@ class World {
         )
         this.globalGroup.position.y = -this.objectDistance * 1
         this.scene.add(this.globalGroup)
-        this.globalLabels = new THREE.Group()
-        this.globalLabels.add(
-            this.originLabel,
-            this.referenceLabels,
-            this.originStructureLabel,
-            this.referenceStructureLabel,
-            this.loadLabel,
-            this.supportLabel,
-            this.gridLabel,
-            this.dimensionLabel
-        )
-        this.globalLabels.position.y = -this.objectDistance * 1
-        this.scene.add(this.globalLabels)
+        // this.globalLabels = new THREE.Group()
+        // this.globalLabels.add(
+        //     this.originLabel,
+        //     this.referenceLabels,
+        //     this.originStructureLabel,
+        //     this.referenceStructureLabel,
+        //     this.loadLabel,
+        //     this.supportLabel,
+        //     this.gridLabel,
+        //     this.dimensionLabel
+        // )
+        // this.globalLabels.position.y = -this.objectDistance * 1
+        // this.scene.add(this.globalLabels)
     }
 
     switchScenes() {
@@ -1233,14 +1233,14 @@ class World {
                         grid: 0.0,
                         dimension: 1.0,
                         referencePoints: 0.0,
-                        originLabel: 0.0,
-                        referenceLabel: 0.0,
-                        originStructureLabel: 0.0,
-                        referenceStructureLabel: 0.0,
-                        loadLabel: 1.0,
-                        supportLabel: 0.0,
-                        gridLabel: 0.0,
-                        dimensionLabel: 1.0,
+                        // originLabel: 0.0,
+                        // referenceLabel: 0.0,
+                        // originStructureLabel: 0.0,
+                        // referenceStructureLabel: 0.0,
+                        // loadLabel: 1.0,
+                        // supportLabel: 0.0,
+                        // gridLabel: 0.0,
+                        // dimensionLabel: 1.0,
                     }
                 )
                 return
@@ -1254,14 +1254,14 @@ class World {
                         grid: 1.0,
                         dimension: 0.15,
                         referencePoints: 0.0,
-                        originLabel: 1.0,
-                        referenceLabel: 0.0,
-                        originStructureLabel: 1.0,
-                        referenceStructureLabel: 0.0,
-                        loadLabel: 0.15,
-                        supportLabel: 0.0,
-                        gridLabel: 1.0,
-                        dimensionLabel: 0.15,
+                        // originLabel: 1.0,
+                        // referenceLabel: 0.0,
+                        // originStructureLabel: 1.0,
+                        // referenceStructureLabel: 0.0,
+                        // loadLabel: 0.15,
+                        // supportLabel: 0.0,
+                        // gridLabel: 1.0,
+                        // dimensionLabel: 0.15,
                     }
                 )
                 this.specialAnimation(1, -2.25)
@@ -1276,14 +1276,14 @@ class World {
                         grid: 1.0,
                         dimension: 1.0,
                         referencePoints: 1.0,
-                        originLabel: 1.0,
-                        referenceLabel: 1.0,
-                        originStructureLabel: 1.0,
-                        referenceStructureLabel: 1.0,
-                        loadLabel: 0.5,
-                        supportLabel: 0.0,
-                        gridLabel: 1.0,
-                        dimensionLabel: 1.0,
+                        // originLabel: 1.0,
+                        // referenceLabel: 1.0,
+                        // originStructureLabel: 1.0,
+                        // referenceStructureLabel: 1.0,
+                        // loadLabel: 0.5,
+                        // supportLabel: 0.0,
+                        // gridLabel: 1.0,
+                        // dimensionLabel: 1.0,
                     }
                 )
                 this.specialAnimation(4.5, 5.0)
@@ -1298,14 +1298,14 @@ class World {
                         grid: 1.0,
                         dimension: 0.0,
                         referencePoints: 0.0,
-                        originLabel: 0.0,
-                        referenceLabel: 0.0,
-                        originStructureLabel: 1.0,
-                        referenceStructureLabel: 1.0,
-                        loadLabel: 0.15,
-                        supportLabel: 1.0,
-                        gridLabel: 1.0,
-                        dimensionLabel: 0.0,
+                        // originLabel: 0.0,
+                        // referenceLabel: 0.0,
+                        // originStructureLabel: 1.0,
+                        // referenceStructureLabel: 1.0,
+                        // loadLabel: 0.15,
+                        // supportLabel: 1.0,
+                        // gridLabel: 1.0,
+                        // dimensionLabel: 0.0,
                     }
                 )
                 return
@@ -1319,14 +1319,14 @@ class World {
                         grid: 1.0,
                         dimension: 0.0,
                         referencePoints: 0.0,
-                        originLabel: 0.0,
-                        referenceLabel: 0.0,
-                        originStructureLabel: 1.0,
-                        referenceStructureLabel: 1.0,
-                        loadLabel: 0.15,
-                        supportLabel: 1.0,
-                        gridLabel: 1.0,
-                        dimensionLabel: 0.0,
+                        // originLabel: 0.0,
+                        // referenceLabel: 0.0,
+                        // originStructureLabel: 1.0,
+                        // referenceStructureLabel: 1.0,
+                        // loadLabel: 0.15,
+                        // supportLabel: 1.0,
+                        // gridLabel: 1.0,
+                        // dimensionLabel: 0.0,
                     }
                 )
                 return
@@ -1343,7 +1343,7 @@ class World {
 
     specialAnimation(x1, x2) {
         gsapAnimation(this.xAxis.scale, { x: x1, ease: 'power2.easeOut', duration: 0.5 })
-        gsapAnimation(this.gridLabel.children[0].position, { x: x2, ease: 'power2.easeOut', duration: 0.5 })
+        // gsapAnimation(this.gridLabel.children[0].position, { x: x2, ease: 'power2.easeOut', duration: 0.5 })
     }
 
     animateLocalScene(parameters) {
@@ -1353,21 +1353,21 @@ class World {
         animateWEBGLOpacity(this.grid, parameters.grid)
         animateWEBGLOpacity(this.dimension, parameters.dimension)
         animateWEBGLOpacity(this.referencePoints, parameters.referencePoints)
-        animateCSS3DOpacity(this.originLabel, parameters.originLabel)
-        animateCSS3DOpacity(this.referenceLabels, parameters.referenceLabel)
-        animateCSS3DOpacity(this.originStructureLabel, parameters.originStructureLabel)
-        animateCSS3DOpacity(this.referenceStructureLabel, parameters.referenceStructureLabel)
-        animateCSS3DOpacity(this.loadLabel, parameters.loadLabel)
-        animateCSS3DOpacity(this.supportLabel, parameters.supportLabel)
-        animateCSS3DOpacity(this.gridLabel, parameters.gridLabel)
-        animateCSS3DOpacity(this.dimensionLabel, parameters.dimensionLabel)
+        // animateCSS3DOpacity(this.originLabel, parameters.originLabel)
+        // animateCSS3DOpacity(this.referenceLabels, parameters.referenceLabel)
+        // animateCSS3DOpacity(this.originStructureLabel, parameters.originStructureLabel)
+        // animateCSS3DOpacity(this.referenceStructureLabel, parameters.referenceStructureLabel)
+        // animateCSS3DOpacity(this.loadLabel, parameters.loadLabel)
+        // animateCSS3DOpacity(this.supportLabel, parameters.supportLabel)
+        // animateCSS3DOpacity(this.gridLabel, parameters.gridLabel)
+        // animateCSS3DOpacity(this.dimensionLabel, parameters.dimensionLabel)
     }
 
     animateGlobalScene() {
         animateWEBGLOpacity(this.globalGroup, 0.0)
-        for (let child of this.globalLabels.children) {
-            animateCSS3DOpacity(child, 0.0)
-        }
+        // for (let child of this.globalLabels.children) {
+        //     animateCSS3DOpacity(child, 0.0)
+        // }
     }
 
     update() {
