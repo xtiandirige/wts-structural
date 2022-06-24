@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { Graphics, makeElement } from '../../../components/Graphics'
+import { makeElement } from '../../../components/Graphics'
 import Experience from '../../Experience'
 
 export default class StructureLabels {
