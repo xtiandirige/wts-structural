@@ -32,13 +32,14 @@ class Graphics {
 
     generateLabel(textLabel = "") {
         const label = document.createElement('div')
+        label.classList.add('katex')
         label.style.color = this.color
         label.style.position = "fixed"
         label.style.boxSizing = 'border-box'
 
         katex.render(textLabel, label, { throwOnError: false })
         const css3DObject = new CSS3DObject(label)
-        css3DObject.scale.set(this.scale, this.scale, this.scale)
+        css3DObject.scle.set(this.scale, this.scale, this.scale)
         css3DObject.position.set(this.position.x + this.xOffset, this.position.y + this.yOffset, this.position.z + this.zOffset)
         return css3DObject
     }

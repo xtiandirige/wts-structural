@@ -44,18 +44,17 @@ export default class World {
     }
 
     // TODO: Refactor classes (make it cleaner)
-    // Upload as CDN
-    // Link to webflow
+    // Cleaner labels
+    // Fix original scene (values, sizes, etc.)
+
+    // Transparancy problem with support load
+    // Responsiveness
 
     // Build next THREEJS Scene (Reaction)
     // Create graphs class for THREEJS (Loads and Deflection)
     // Create annotation class for sections
 
-    // Transparancy problem with support load
-    // Responsiveness
-
     // When refreshing, start at zero scroll
-    // Scaling sync with WEBGL and CSS3D (Create another scene)
     // Destroy each material and object (CSS3D)
 
     parameters() {
