@@ -5,7 +5,7 @@ import Experience from '../../Experience'
 export default class GridLabels {
     constructor() {
         const gridLabel = {
-            scale: 0.0035,
+            scale: 0.6,
         }
         this.experience = new Experience()
         this.x = new Graphics({}, {
