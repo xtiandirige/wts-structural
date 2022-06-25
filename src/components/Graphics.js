@@ -14,7 +14,7 @@ class Graphics {
         this.xOffset = labelParameters.hasOwnProperty("xOffset") ? labelParameters["xOffset"] : 0
         this.yOffset = labelParameters.hasOwnProperty("yOffset") ? labelParameters["yOffset"] : 0
         this.zOffset = labelParameters.hasOwnProperty("zOffset") ? labelParameters["zOffset"] : 0
-        this.scale = labelParameters.hasOwnProperty("scale") ? labelParameters["scale"] : 0.005
+        this.scale = labelParameters.hasOwnProperty("scale") ? labelParameters["scale"] : 1 //0.005
         this.position = labelParameters.hasOwnProperty("position") ? labelParameters["position"] : new THREE.Vector3(0, 0, 0)
     }
 
@@ -55,6 +55,7 @@ function labelParametersWithOffset(parameters, x, y, z) {
 
 function makeElement(latexText, position) {
     const label = document.createElement('div')
+    label.classList.add('katex')
     label.style.position = "fixed"
     label.style.top = 0
     label.style.boxSizing = 'border-box'

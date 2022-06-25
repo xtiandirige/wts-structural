@@ -21,7 +21,6 @@ export default class Grid {
             originMagnitudeX: 2,
             originMagnitudeY: 2,
             graphics: gridGraphicParameters,
-            labelParameters: gridLabelParameters
         })
         this.getGrid()
     }

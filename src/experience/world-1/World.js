@@ -19,7 +19,6 @@ export default class World {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.parameters()
-        this.axisHelper()
         this.getStructure()
         this.getLoads()
         this.getGrid()
@@ -27,6 +26,7 @@ export default class World {
         this.getReferencePoint()
         this.getLabels()
         this.getGlobalGroup()
+        // this.testLabels()
         // this.resources = this.experience.resources
         // this.resources.on('ready', () => {
         //     this.object = new Object()
@@ -42,6 +42,14 @@ export default class World {
             this.experience.camera.positionCamera(new THREE.Vector3(0, -this.scrollY / this.experience.sizes.height * this.objectDistance, 0))
         })
     }
+
+    // testLabels() {
+    //     const labelContainerElem = document.querySelector('#labels');
+    //     const elem = document.createElement('div');
+    //     elem.setAttribute("id", "test")
+    //     elem.textContent = 'Sample';
+    //     labelContainerElem.appendChild(elem);
+    // }
 
     // TODO: Refactor classes (make it cleaner)
     // Cleaner labels
@@ -84,10 +92,6 @@ export default class World {
                 position: new THREE.Vector3(2.5, -1.8, 0),
             }
         ]
-    }
-
-    axisHelper() {
-        this.scene.add(new THREE.AxesHelper())
     }
 
     getStructure() {
@@ -308,6 +312,11 @@ export default class World {
     }
 
     update() {
-
+        // const tempV = new THREE.Vector3()
+        // tempV.project(this.experience.camera.instance)
+        // const x = (tempV.x * .5 + .5) * this.experience.canvas.clientWidth
+        // const y = (tempV.y * -.5 + .5) * this.experience.canvas.clientHeight
+        // let elem = document.getElementById('test')
+        // elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
     }
 }

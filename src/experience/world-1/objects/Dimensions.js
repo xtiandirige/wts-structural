@@ -10,9 +10,9 @@ const annotationGraphicParameters = {
         transparent: true,
     })
 }
-const dimensionLabelParameters = {
-    scale: 0.0035,
-}
+// const dimensionLabelParameters = {
+//     scale: 0.0035,
+// }
 
 export default class Dimensions {
     constructor(dimensionParameters) {
@@ -21,24 +21,18 @@ export default class Dimensions {
             ...dimensionParameters[0],
             referencePosition: -1,
             graphics: annotationGraphicParameters,
-            label: '2m',
-            labelParameters: dimensionLabelParameters,
             angle: -Math.PI / 2
         })
         this.dimension2 = new DimensionXY({
             ...dimensionParameters[1],
             referencePosition: -1,
             graphics: annotationGraphicParameters,
-            label: '4m',
-            labelParameters: dimensionLabelParameters,
             angle: -Math.PI / 2
         })
         this.dimension3 = new DimensionXY({
             ...dimensionParameters[2],
             referencePosition: -1,
             graphics: annotationGraphicParameters,
-            label: '2m',
-            labelParameters: dimensionLabelParameters,
             angle: -Math.PI / 2
         })
         this.getDimensions()

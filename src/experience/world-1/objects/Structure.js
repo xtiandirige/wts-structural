@@ -6,7 +6,7 @@ const structureMaterial = new THREE.MeshBasicMaterial({
     transparent: true,
 })
 const supportMaterial = new THREE.MeshBasicMaterial({
-    color: '#D3D3D3',
+    color: '#E82D2D',
     transparent: true,
 });
 
