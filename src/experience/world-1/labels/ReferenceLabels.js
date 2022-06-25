@@ -5,10 +5,10 @@ import Experience from '../../Experience'
 export default class ReferenceLabels {
     constructor() {
         this.experience = new Experience()
-        this.ALabel = new Graphics({}, { scale: 0.05 }).generateLabel("(0,0)")
-        this.BLabel = new Graphics({}, { scale: 0.05 }).generateLabel("(2.5,0)")
-        this.CLabel = new Graphics({}, { scale: 0.05 }).generateLabel("(7.5,0)")
-        this.DLabel = new Graphics({}, { scale: 0.05 }).generateLabel("(9.0,0)")
+        this.ALabel = new Graphics({}, { scale: 0.005 }).generateLabel("(0,0)")
+        this.BLabel = new Graphics({}, { scale: 0.005 }).generateLabel("(2.5,0)")
+        this.CLabel = new Graphics({}, { scale: 0.005 }).generateLabel("(7.5,0)")
+        this.DLabel = new Graphics({}, { scale: 0.005 }).generateLabel("(9.0,0)")
         this.getReferenceLabels()
     }
 
