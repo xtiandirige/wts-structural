@@ -80,19 +80,6 @@ canvas.webgl
     
 }
 
-/* .section:nth-child(odd){
-    background-color: lightblue;
-    opacity: 0.2;
-} */
-
 .katex { font-size: 100px; }
-
-h1{
-    font-size: xx-large;
-}
-
-p {
-    font-size: x-large;
-}
 
 /*# sourceMappingURL=main.css.map*/

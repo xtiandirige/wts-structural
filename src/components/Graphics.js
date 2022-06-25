@@ -61,7 +61,7 @@ function makeElement(latexText, position) {
     label.style.boxSizing = 'border-box'
     katex.render(latexText, label, { throwOnError: false })
     const objectCSS = new CSS3DObject(label)
-    objectCSS.scale.set(0.005, 0.005, 0.005)
+    objectCSS.scale.set(1.2, 1.2, 1.2)
     objectCSS.position.set(position.x, position.y, position.z)
     return objectCSS
 }
