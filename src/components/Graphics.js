@@ -32,7 +32,7 @@ class Graphics {
 
     generateLabel(textLabel = "") {
         const label = document.createElement('div')
-        label.classList.add('katex')
+        // label.classList.add('katex')
         label.style.color = this.color
         label.style.position = "fixed"
         label.style.boxSizing = 'border-box'
