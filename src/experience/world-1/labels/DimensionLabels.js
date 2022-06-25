@@ -6,7 +6,7 @@ import Experience from '../../Experience'
 export default class DimensionLabel {
     constructor(dimensionParameters) {
         this.dimensionLabel = {
-            scale: 0.6,
+            scale: 0.1,
         }
         this.experience = new Experience()
         this.dimension1 = this.getLabel('2.5m', dimensionParameters[0])

@@ -6,11 +6,11 @@ export default class LoadLabels {
     constructor(loadPosition) {
         const loadLabel = {
             color: 'blue',
-            scale: 0.6,
+            scale: 0.1,
         }
         const supportLabel = {
             color: 'red',
-            scale: 0.6,
+            scale: 0.1,
         }
         this.experience = new Experience()
         this.momentLabel = new Graphics({}, {
